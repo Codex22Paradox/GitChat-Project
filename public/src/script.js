@@ -961,7 +961,7 @@ buttonRepository.onclick = () => {
     name.classList.remove("border-danger");
     const nomeRepository = name.value.replaceAll(" ", "-");
     if (name.value != "") {
-        const result = connectRepository(nomeRepository, descr.value, priv.checked, room)
+        const result = connectRepository(nomeRepository, descr.value, priv.checked, room, chats)
         console.log(result);
         modalRepository.hide();
         buttonModal.innerHTML = `Apri Repository

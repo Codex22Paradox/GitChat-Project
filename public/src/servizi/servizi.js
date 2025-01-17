@@ -302,7 +302,7 @@ export const getChatOwner = (idChat, chats) => {
  * @param {string} description - La descrizione della repository
  * @param {boolean} priv - Determina se la repository sia pubblica o privata
  */
-export const connectRepository = (name, description, priv, room) => {
+export const connectRepository = (name, description, priv, room, chats) => {
     const repoSpecs = {
         name: name, descr: description, private: priv
     };
@@ -412,6 +412,6 @@ export const userHasGithub = (username) => {
             headers: {
                 'content-type': "Applicatio/json"
             }
-        }).then((res) => res.json() ).then((res) => resolve(res))
+        }).then((res) => res.json()).then((res) => resolve(res))
     })
 }
