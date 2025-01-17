@@ -57,7 +57,7 @@ export const getMessages = (db, chatId) => {
                      ORDER BY Data_invio, Ora_invio `;
         db.query(sql, [chatId], (err, result) => {
             if (err) {
-                reject(err);
+                resolve([]);
             } else {
                 resolve(result);
             }
