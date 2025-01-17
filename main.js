@@ -554,7 +554,7 @@ app.delete("/chat/:id", async (req, res) => {
  */
 app.get("/github/login", (req, res) => {
     const client_id = gitConfig.client_id;
-    const redirect_uri = "http://localhost:3000/github/callback";
+    const redirect_uri = "https://gitchat.servehttp.com/github/callback";
     const scope = "repo%20codespace";
     const url = `https://github.com/login/oauth/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}&state=login`;
     res.json({url: url});
@@ -562,7 +562,7 @@ app.get("/github/login", (req, res) => {
 
 app.get("/github/register", (req, res) => {
     const client_id = gitConfig.client_id;
-    const redirect_uri = "http://localhost:3000/github/callback";
+    const redirect_uri = "https://gitchat.servehttp.com/github/callback";
     const scope = "repo%20codespace";
     const url = `https://github.com/login/oauth/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}&state=register`;
     res.json({url: url});
@@ -574,7 +574,7 @@ app.get("/github/register", (req, res) => {
  */
 app.get("/github/connect/:username", (req, res) => {
     const client_id = gitConfig.client_id;
-    const redirect_uri = "http://localhost:3000/github/callback";
+    const redirect_uri = "https://gitchat.servehttp.com/github/callback";
     const scope = "repo%20codespace";
     const state = req.params.username;
     const url = `https://github.com/login/oauth/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}&state=${state}`;
@@ -588,7 +588,7 @@ app.get("/github/callback", async (req, res) => {
     const code = req.query.code;
     const client_id = gitConfig.client_id;
     const client_secret = gitConfig.client_secret;
-    const redirect_uri = "http://localhost:3000/github/callback";
+    const redirect_uri = "https://gitchat.servehttp.com/github/callback";
     const state = req.query.state;
 
     // Scambia il codice di autorizzazione con un token di accesso
@@ -620,19 +620,19 @@ app.get("/github/callback", async (req, res) => {
             console.log(username);
             addTokenToUser(userData.login, access_token)
                 .then(() => {
-                    res.redirect(`http://localhost:3000/index.html?login=${username}`);
+                    res.redirect(`https://gitchat.servehttp.com/index.html?login=${username}`);
                 })
                 .catch(err => {
-                    res.redirect(`http://localhost:3000/index.html?login=${username}&token=false`);
+                    res.redirect(`https://gitchat.servehttp.com/index.html?login=${username}&token=false`);
                 });
         } catch (err) {
             console.log("Errore");
             console.log(err);
-            res.redirect(`http://localhost:3000/accedi.html?login=failed`);
+            res.redirect(`https://gitchat.servehttp.com/accedi.html?login=failed`);
         }
     } else if (state === "register") {
         await registerUserGithub(userData.login, access_token);
-        res.redirect(`http://localhost:3000/register.html?action=register&username=${userData.login}`);
+        res.redirect(`https://gitchat.servehttp.com/register.html?action=register&username=${userData.login}`);
     } else {
         addGitUsernameToUser(state, userData.login)
             .then(msg => {
@@ -640,20 +640,20 @@ app.get("/github/callback", async (req, res) => {
                 addTokenToUser(state, access_token)
                     .then(msg => {
                         console.log(msg);
-                        res.redirect("http://localhost:3000/index.html");
+                        res.redirect("https://gitchat.servehttp.com/index.html");
                     })
                     .catch(err => {
                         console.log(err);
-                        res.redirect("http://localhost:3000/index.html?username=failed");
+                        res.redirect("https://gitchat.servehttp.com/index.html?username=failed");
                     });
             })
             .catch(err => {
                 console.log(err);
-                res.redirect("http://localhost:3000/index.html?token=failed");
+                res.redirect("https://gitchat.servehttp.com/index.html?token=failed");
             });
     }
     // Reindirizza l'utente alla tua applicazione
-    //res.json({url: 'http://localhost:3000/index.html'});
+    //res.json({url: 'https://gitchat.servehttp.com/index.html'});
 });
 
 /**
