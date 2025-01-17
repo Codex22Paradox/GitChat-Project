@@ -16,7 +16,7 @@ import {
     deleteChatRoom,
     updateUsername,
     updateUserEmail,
-    updateUserProfileImage, userHasGithub
+    updateUserProfileImage, userHasGithub, checkRepo
 } from "./servizi/servizi.js"; // Importa i servizi
 
 const socket = io();
@@ -671,6 +671,7 @@ if (sessionStorage.getItem("username") === null || sessionStorage.getItem("passw
     mieChat = await getUserOwnedChats(username);
     spinner.classList.add('d-none');
     page.classList.remove('d-none');
+
     listChat.innerHTML = chats
         .map((chat) => {
             const usernames = chat.users.map(user => user.username).join(", ");
