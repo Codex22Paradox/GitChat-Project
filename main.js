@@ -65,7 +65,14 @@ const server = http.createServer(app);
 const port = 3000;
 const bodyParser = require("body-parser");
 const {Server} = require("socket.io");
-const io = new Server(server);
+const io = new Server(server, {
+    path: "/socket.io",
+    transports: ["websocket", "polling"], // Abilita i trasporti
+    cors: {
+        origin: "*", // Sostituisci con il dominio effettivo se necessario
+        methods: ["GET", "POST"]
+    }
+});
 let temporaryMessages = {};
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
