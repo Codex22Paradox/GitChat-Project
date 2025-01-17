@@ -62,7 +62,7 @@ require("path");
 const express = require("express");
 const app = express();
 const server = http.createServer(app);
-const port = 3000;
+const port = 3003;
 const bodyParser = require("body-parser");
 const {Server} = require("socket.io");
 const io = new Server(server);
@@ -84,7 +84,7 @@ app.use(bodyParser.urlencoded({extended: true})); // supporta i corpi delle rich
 app.use(express.static("public"));
 
 server.listen(port, () => {
-    console.log("listening on *:3000");
+    console.log("listening on *:3003");
 });
 
 // Connettiti al database
