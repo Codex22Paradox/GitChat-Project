@@ -19,7 +19,10 @@ import {
     updateUserProfileImage, userHasGithub
 } from "./servizi/servizi.js"; // Importa i servizi
 
-const socket = io();
+const socket = io({
+    path: "/socket.io",
+    transports: ["websocket", "polling"] // Usa gli stessi trasporti del server
+});
 const page = document.getElementById("page");
 const spinner = document.getElementById("spinner");
 const fileInput = document.getElementById("file-input");
