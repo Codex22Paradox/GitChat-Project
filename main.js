@@ -127,7 +127,7 @@ app.get("/chat/:id/messages", async (req, res) => {
         const formattedMessages = formatMessages(messages);
         res.json(formattedMessages);
     } catch (err) {
-        res.json({message: "Errore"});
+        res.json([]);
     }
 });
 /**
