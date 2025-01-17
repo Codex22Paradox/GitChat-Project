@@ -18,7 +18,7 @@ import {
     updateUserEmail,
     connectRepository,
     getChatOwner,
-    updateUserProfileImage, userHasGithub, checkRepo
+    updateUserProfileImage, userHasGithub, checkRepo, getCodespace
 } from "./servizi/servizi.js"; // Importa i servizi
 
 const socket = io({
@@ -961,7 +961,7 @@ buttonRepository.onclick = () => {
     name.classList.remove("border-danger");
     const nomeRepository = name.value.replaceAll(" ", "-");
     if (name.value != "") {
-        const result = connectRepository(nomeRepository, descr.value, priv.checked)
+        const result = connectRepository(nomeRepository, descr.value, priv.checked, room)
         console.log(result);
         modalRepository.hide();
         buttonModal.innerHTML = `Apri Repository
