@@ -16,6 +16,7 @@ import {
     deleteChatRoom,
     updateUsername,
     updateUserEmail,
+    connectRepository,
     updateUserProfileImage, userHasGithub, checkRepo
 } from "./servizi/servizi.js"; // Importa i servizi
 
