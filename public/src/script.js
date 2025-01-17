@@ -17,6 +17,7 @@ import {
     updateUsername,
     updateUserEmail,
     connectRepository,
+    getChatOwner,
     updateUserProfileImage, userHasGithub, checkRepo
 } from "./servizi/servizi.js"; // Importa i servizi
 
@@ -641,15 +642,6 @@ const renderPartecipanti = (partecipanti) => {
             delay: index * 0.5, // Ritarda l'inizio dell'animazione di 0.5 secondi per ogni elemento
         });
     });
-}
-const getChatOwner = (idChat, chats) => {
-    let chatOwner;
-    chats.forEach((Element) => {
-        if (Element.Id == idChat) {
-            chatOwner = Element.Proprietario;
-        }
-    })
-    return chatOwner;
 }
 
 

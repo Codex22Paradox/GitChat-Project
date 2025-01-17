@@ -287,6 +287,15 @@ export async function updateUserEmail(username, newEmail) {
     return await response.json();
 }
 
+export const getChatOwner = (idChat, chats) => {
+    let chatOwner;
+    chats.forEach((Element) => {
+        if (Element.Id == idChat) {
+            chatOwner = Element.Proprietario;
+        }
+    })
+    return chatOwner;
+}
 /**
  * Funzione che crea una repository su github
  * @param {string} name - Il nome della repository
